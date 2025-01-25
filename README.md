@@ -23,7 +23,7 @@
 # Server.exe
 
 <details><summary><b>sm plugins list</b></summary>
-
+```ruby
 [SM] Listing 109 plugins:  
 001 "[L4D2]hunter_pounce_alignment_fix" (2.0) by Lux
 002 "[L4D1 & L4D2] Ignore Physics Damage" (1.0.0) by Mart
@@ -134,11 +134,11 @@
 107 "Basic Commands" (1.12.0.7176) by AlliedModders LLC
 108 "Fun Commands" (1.12.0.7165) by AlliedModders LLC
 109 "Player Commands" (1.12.0.7165) by AlliedModders LLC
-	
+```
 </details>
 
 <details><summary><b>meta list</b></summary>
-
+```ruby
 Listing 10 plugins:
   [01] L4DToolZ (2.0.1) by Accelerator, Ivailosp
   [02] Pounce Damage Uncap (1.1.0.0-1) by Michael "ProdigySim" Busby, $atanic $pirit
@@ -150,11 +150,11 @@ Listing 10 plugins:
   [08] SourceTV Support (0.10.1) by Evgeniy "shqke" Kazakov
   [09] SDK Hooks (1.12.0.7176) by AlliedModders LLC
   [10] DHooks (1.12.0.7176) by AlliedModders LLC
-	
+```	
 </details>
 
 <details><summary><b>sm exts list</b></summary>
-
+```ruby
 [SM] Displaying 17 extensions:
 [01] Accelerator (2.5.0): SRCDS Crash Handler
 [02] Webternet (1.12.0.7176): Extension for interacting with URLs
@@ -173,15 +173,15 @@ Listing 10 plugins:
 [15] REST in Pawn (1.3.1): Provides HTTP and JSON natives for plugins
 [16] Regex (1.12.0.7176): Provides regex natives for plugins
 [17] MySQL-DBI (1.12.0.7176): MySQL driver implementation for DBI
-	
+```
 </details>
 
 <details><summary><b>plugin_print</b></summary>
-
+```ruby
 Loaded plugins:  
 0:      "Metamod:Source 1.12.0-dev+1211"
 1:      "Tickrate_Enabler 1.5, ProdigySim"
-	
+```
 </details>
 
 <details><summary><b>My Server.cfg</b></summary>
