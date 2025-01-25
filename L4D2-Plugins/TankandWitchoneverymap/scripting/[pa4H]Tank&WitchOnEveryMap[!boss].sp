@@ -18,8 +18,8 @@ public Plugin myinfo =
 	name = "Tank&Witch on every map and !boss", 
 	author = "pa4H", 
 	description = "", 
-	version = "220224", 
-	url = "vk.com/pa4h1337"
+	version = "030824", 
+	url = "https://t.me/pa4H232"
 }
 
 public OnPluginStart()
@@ -31,7 +31,6 @@ public OnPluginStart()
 	RegConsoleCmd("sm_witch", getBossFlowsm, "");
 	
 	HookEvent("round_start", RoundStartEvent, EventHookMode_PostNoCopy); // Сервер запустился
-	//HookEvent("versus_round_start", VersusRoundStartEvent, EventHookMode_PostNoCopy); // Игрок вышел из saferoom
 	HookEvent("tank_spawn", TankNotify, EventHookMode_PostNoCopy); // Событие уведомляющее о появлении Танка
 	HookEvent("player_death", TankDead, EventHookMode_Pre);
 	
@@ -42,18 +41,17 @@ public OnPluginStart()
 
 stock Action testTank(int client, int args) // DEBUG
 {
-	
 	return Plugin_Handled;
 }
 
 public RoundStartEvent(Handle event, const char[] name, bool dontBroadcast) // Сервер запустился
 {
-	CreateTimer(0.5, AdjustBossFlow); // После Round Start с задержкой задаём процент спауна Танка
+	tankIsAlive = false; // Разрешаем выводить "Танк появился" в чат
+	if (GameRules_GetProp("m_bInSecondHalfOfRound") == 0) { CreateTimer(0.4, AdjustBossFlow); } // После Round Start с задержкой задаём процент спауна Танка
+	
 }
 public Action AdjustBossFlow(Handle timer)
 {
-	tankIsAlive = false; // Разрешаем выводить "Танк появился" в чат
-	
 	L4D2Direct_SetVSTankToSpawnThisRound(0, true); // Приказываем директору заспаунить Танка в 1 раунде
 	L4D2Direct_SetVSTankToSpawnThisRound(1, true); // Приказываем во 2 раунде
 	L4D2Direct_SetVSWitchToSpawnThisRound(0, true); // Вичка
@@ -62,7 +60,7 @@ public Action AdjustBossFlow(Handle timer)
 	GetCurrentMap(mapName, sizeof(mapName)); //PrintToChatAll(mapName); // Получаем карту
 	for (int i = 0; i < sizeof(restrictedMaps); i++) // Перебираем список запрещенных карт
 	{
-		if (StrEqual(restrictedMaps[i], mapName) == true) // Если текущая карта есть в списке запрещенных
+		if (StrEqual(restrictedMaps[i], mapName)) // Если текущая карта есть в списке запрещенных
 		{
 			L4D2Direct_SetVSTankToSpawnThisRound(0, false); // Запрещаем спаун Танка
 			L4D2Direct_SetVSTankToSpawnThisRound(1, false);
@@ -91,10 +89,8 @@ public void randomSpawn(bool isRandom) // Функция задающая про
 	
 	if (isRandom) // Получаем рандомный процент. Если 0.9, значит будет 80%. Если 0.2, значит будет 10%
 	{
-		//rndFlowTank = GetRandomFloat(0.5, 0.9); // 40-80%
-		//rndFlowWitch = GetRandomFloat(0.35, 0.9); // 25-80%
-		rndFlowTank = CalcFlow(GetRandomInt(40, 80));
-		rndFlowWitch = CalcFlow(GetRandomInt(25, 80));
+		rndFlowTank = CalcFlow(GetRandomInt(50, 80));
+		rndFlowWitch = CalcFlow(GetRandomInt(20, 45));
 	}
 	else
 	{
@@ -137,7 +133,7 @@ public void TankNotify(Event event, const char[] name, bool dontBroadcast) // Т
 			CPrintToChatAll("%t", "TankIsHereBOT");
 		}
 		else {
-			for (int i = 1; i < MaxClients; i++)
+			for (int i = 1; i <= MaxClients; i++)
 			{
 				if (IsValidClient(i))
 				{
@@ -169,7 +165,6 @@ float CalcFlow(int per)
 }
 float GetTankFlow(int round)
 {
-	//if (L4D_IsMissionFinalMap() == true) { return 0.05; }
 	return L4D2Direct_GetVSTankFlowPercent(round) - GetConVarFloat(g_hVsBossBuffer) / L4D2Direct_GetMapMaxFlowDistance();
 }
 float GetWitchFlow(int round)
@@ -182,8 +177,7 @@ stock float map(float x, float in_min, float in_max, float out_min, float out_ma
 }
 stock bool IsValidClient(client)
 {
-	if (client > 0 && client <= MaxClients && IsClientConnected(client) && !IsFakeClient(client))
-	{
+	if (client > 0 && client <= MaxClients && IsClientInGame(client) && IsClientConnected(client) && !IsFakeClient(client)) {
 		return true;
 	}
 	return false;
@@ -193,25 +187,20 @@ stock bool IsValidClient(client)
 public Action L4D_OnGetScriptValueInt(const char[] key, int &retVal)
 {
 	int val = retVal;
-	if (StrEqual(key, "ProhibitBosses"))
-	{
+	if (StrEqual(key, "ProhibitBosses")) {
 		val = 0;
 	}
-	if (StrEqual(key, "DisallowThreatType"))
-	{
+	if (StrEqual(key, "DisallowThreatType")) {
 		val = 0;
 	}
-	if (StrEqual(key, "TankLimit"))
-	{
+	if (StrEqual(key, "TankLimit")) {
 		val = 1;
 	}
-	if (StrEqual(key, "WitchLimit"))
-	{
+	if (StrEqual(key, "WitchLimit")) {
 		val = 1;
 	}
 	
-	if (val != retVal)
-	{
+	if (val != retVal) {
 		retVal = val;
 		return Plugin_Handled;
 	}

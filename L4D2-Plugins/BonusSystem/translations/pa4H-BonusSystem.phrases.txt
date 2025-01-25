@@ -18,4 +18,10 @@
 		"en"		"{olive}► Witch:   {lightgreen}{1}/50\n{olive}► Medkits:  {lightgreen}{2}/100\n{olive}► Incaps:   {lightgreen}{3}/100\n{olive}► Deaths:   {lightgreen}{4}/100"
 		"ru"		"{olive}► Ведьма:   {lightgreen}{1}/50\n{olive}► Аптечки:  {lightgreen}{2}/100\n{olive}► Инкапы:   {lightgreen}{3}/100\n{olive}► Смерти:   {lightgreen}{4}/100"
 	}
+	"Incap"
+	{
+		#format		"{1:N}"
+		"en"		"{green}[BonusSystem] {red}Witch {default}incapped player {olive}{1}{default}.\nPoints will not be awarded"
+		"ru"		"{green}[BonusSystem] {red}Ведьма {default}инкапнула игрока {olive}{1}{default}.\nОчки не будут начислены"
+	}
 }

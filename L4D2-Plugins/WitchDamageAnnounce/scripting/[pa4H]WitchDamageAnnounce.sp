@@ -3,46 +3,47 @@
 #include <left4dhooks>
 #include <colors>
 
-#define WitchMaxHP 1000
 #define L4D_TEAM_SPECTATOR 1
 #define L4D_TEAM_SURVIVOR 2
 #define L4D_TEAM_INFECTED 3
 
 int witchDamage[MAXPLAYERS + 1];
+int maxHP; // Фактические ХП Ведьмы
+int sortedClients[MAXPLAYERS + 1]; // Нужно для корректного вывода отсортированного урона
+int clientCount = 0;
 
-public Plugin:myinfo = 
+public Plugin myinfo = 
 {
 	name = "WitchDamageAnnounce", 
 	author = "pa4H", 
 	description = "", 
-	version = "1.0", 
-	url = "vk.com/pa4h1337"
+	version = "2.0", 
+	url = "https://t.me/pa4H232"
 }
 
 public OnPluginStart()
 {
-	//RegConsoleCmd("sm_testWitch", test);
+	//RegConsoleCmd("sm_test", test);
 	HookEvent("infected_hurt", WitchHurt_Event, EventHookMode_Post);
 	HookEvent("witch_killed", WitchDeath_Event, EventHookMode_Post);
 	
 	HookEvent("round_end", RoundEnd_Event, EventHookMode_PostNoCopy);
 	
-	LoadTranslations("pa4HWitchAnnounce.phrases");
+	LoadTranslations("pa4H-TankAndWitchDamageAnnounce.phrases");
 }
+
 stock Action test(int client, int args) // DEBUG
 {
-	for (int i = 1; i <= MaxClients; i++) { if (IsValidClient(i)) { PrintToChatAll("%N", i); } }
 	return Plugin_Handled;
 }
 
 void PrintDamage()
 {
-	CPrintToChatAll("%t", "Killed");
-	for (int i = 1; i <= MaxClients; i++)
+	CPrintToChatAll("%t", "WitchKilled");
+	for (int i = 0; i < clientCount; i++)
 	{
-		if (IsValidClient(i) && witchDamage[i] > 0)
-		{
-			PrintToChatAll("\x05%4d\x01 [\x04%d%%\x01]: \x03%N\x01", witchDamage[i], map(witchDamage[i], 0, 1000, 0, 100), i); // 1024 [100%]: Nickname
+		if (IsValidClientB(sortedClients[i]) && witchDamage[sortedClients[i]] > 0) {
+			CPrintToChatAll("  {olive}%i {default}[{green}%i%%{default}]: {lightgreen}%N", witchDamage[sortedClients[i]], map(witchDamage[sortedClients[i]], 0, maxHP, 0, 100), sortedClients[i]); // 1024 [100%]: Nickname
 		}
 	}
 	ClearWitchDamage();
@@ -53,7 +54,7 @@ public void RoundEnd_Event(Event event, const char[] name, bool dontBroadcast)
 	ClearWitchDamage();
 }
 
-public void OnMapEnd() // требуется, поскольку принудительная смена карты не вызывает событие "round_end"
+public void OnMapEnd() // Требуется, поскольку принудительная смена карты не вызывает событие "round_end"
 {
 	ClearWitchDamage();
 }
@@ -72,17 +73,37 @@ public WitchHurt_Event(Handle event, const char[] name, bool dontBroadcast)
 }
 public WitchDeath_Event(Handle event, const char[] name, bool dontBroadcast)
 {
+	for (int i = 1; i <= MaxClients; i++) { if (IsValidClientB(i)) { maxHP += witchDamage[i]; } } // Получаем фактические ХП Ведьмы
+	
+	for (int i = 1; i <= MaxClients; i++) // Сортировка урона
+	{
+		if (witchDamage[i] != 0)
+		{
+			sortedClients[clientCount] = i;
+			clientCount++;
+		}
+	}
+	SortIndicesByValue(witchDamage, sortedClients, clientCount);
+	
 	PrintDamage();
 	ClearWitchDamage();
 }
 void ClearWitchDamage()
 {
-	for (new i = 1; i <= MaxClients; i++) { witchDamage[i] = 0;  }
+	for (int i = 1; i <= MaxClients; i++) { sortedClients[i] = 0; witchDamage[i] = 0; }
+	maxHP = 0;
+	clientCount = 0;
 }
 stock bool IsValidClient(client)
 {
-	if (client > 0 && client <= MaxClients && IsClientConnected(client) && !IsFakeClient(client))
-	{
+	if (client > 0 && client <= MaxClients && IsClientConnected(client) && !IsFakeClient(client)) {
+		return true;
+	}
+	return false;
+}
+stock bool IsValidClientB(int client)
+{
+	if (client > 0 && client <= MaxClients && IsClientConnected(client)) {
 		return true;
 	}
 	return false;
@@ -99,9 +120,22 @@ stock bool IsWitch(iEntity)
 }
 public int map(int x, int in_min, int in_max, int out_min, int out_max) // Пропорция
 {
-	if (x > WitchMaxHP)
-	{
-		return 100;
-	}
 	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+public void SortIndicesByValue(int[] damage, int[] indices, int size) // Сортировка методом выбора
+{
+	for (int i = 0; i < size - 1; i++)
+	{
+		for (int j = i + 1; j < size; j++)
+		{
+			// Если значение в witchDamage для индекса больше, меняем местами индексы
+			if (damage[indices[i]] < damage[indices[j]])
+			{
+				int temp = indices[i];
+				indices[i] = indices[j];
+				indices[j] = temp;
+			}
+		}
+	}
 } 

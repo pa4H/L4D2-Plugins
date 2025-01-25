@@ -1,0 +1,24 @@
+"Phrases"
+{
+	"TankIsHereBOT"
+	{
+		"en"		"{olive}Tank{default} {green}has spawned!"
+		"ru"		"{green}Появился {olive}Танк"
+	}
+	"TankIsHere"
+	{
+		"#format"  	"{1:N}"
+		"en"		"{olive}Tank{default} {lightgreen}{1} {green}has spawned!"
+		"ru"		"{green}Появился {olive}Танк {lightgreen}[{1}]"
+	}
+	"PassTankNotify"
+	{
+		"en"		"{lightgreen}!pass {default}- command to pass the {olive}Tank"
+		"ru"		"{lightgreen}!pass {default}- команда для передачи {olive}Танка"
+	}
+	"RockInfo"
+	{
+		"en"		"{green}[PEZDOX]{default} Rock selector:\n{olive}Mouse2{default} ->  Rock overhand\n{olive}R{default}           ->  Rock above head\n{olive}E{default}           ->  Rock underhand"
+		"ru"		"{green}[PEZDOX]{default} Выбор камня:\n{olive}ПКМ{default}  ->  Камень сверху\n  {olive}R{default}     ->  Камень над головой\n  {olive}E{default}     ->  Камень снизу"
+	}
+}

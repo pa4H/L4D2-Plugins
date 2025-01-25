@@ -1,28 +1,33 @@
 #include <sourcemod>
-#include <left4dhooks> 
 #include <sdktools>
 #include <sdkhooks>
+#include <left4dhooks> 
 
 //char DropLP[PLATFORM_MAX_PATH]; // debug
-
-float SurvivorStart[3]; // Координаты первого saferoom
-int medkitsIndex[5]; // Номера аптечек в списке entity
+Handle medkitTimer;
 
 public Plugin myinfo = 
 {
 	name = "SetItemsCount", 
-	author = "pa4H, Crimson_Fox", 
+	author = "pa4H", 
 	description = "", 
-	version = "2.1", 
+	version = "3.0", 
 	url = "https://t.me/pa4H232"
 }
 
 public OnPluginStart()
 {
-	//RegConsoleCmd("sm_test", debb, "");
-	RegAdminCmd("sm_itemcount", printItemCount, ADMFLAG_BAN, "");
+	RegConsoleCmd("sm_test", debb, "");
+	RegAdminCmd("sm_itemcount", printItemCount, ADMFLAG_BAN);
+	RegAdminCmd("sm_itemscount", printItemCount, ADMFLAG_BAN);
+	RegAdminCmd("sm_countitems", printItemCount, ADMFLAG_BAN);
+	RegAdminCmd("sm_showitems", printItemCount, ADMFLAG_BAN);
+	RegAdminCmd("sm_itemsshow", printItemCount, ADMFLAG_BAN);
+	RegAdminCmd("sm_itemshow", printItemCount, ADMFLAG_BAN);
 	
-	HookEvent("versus_round_start", clearEvent);
+	HookEvent("round_start", Event_RoundStart);
+	HookEvent("player_left_safe_area", Event_PlayerLeftSafeArea, EventHookMode_PostNoCopy);
+	HookEvent("round_end", Event_RoundEnd, EventHookMode_PostNoCopy);
 	
 	//BuildPath(Path_SM, DropLP, sizeof(DropLP), "logs/SetItemCount.log"); // debug
 }
@@ -31,42 +36,71 @@ stock Action debb(int client, int args) // DEBUG
 	return Plugin_Handled;
 }
 
-public void clearEvent(Event hEvent, const char[] sEvName, bool bDontBroadcast) // Срабатывает после выхода из saferoom
+stock float map(float x, float in_min, float in_max, float out_min, float out_max) // Пропорция
 {
+	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+void Event_PlayerLeftSafeArea(Event eEvent, const char[] szName, bool bDontBroadcast) {  // Игрок вышел из saferoom
 	if (!isVersus()) { return; }
-	findSurvivorStart(); // Получаем координаты 1 убеги
-	getMedkitsIndexes();
-	bool isFinalMap = L4D_IsMissionFinalMap();
-	char eName[64];
-	int pill, med, adr, pipe, molot, defib, vomit, ince, expl;
-	int mi = 0; // Для пропуска medkit'ов в убеге
-	for (int i = 1; i <= GetEntityCount(); i++)
-	{
-		if (IsValidEntity(i))
+	medkitTimer = null;
+	delete medkitTimer;
+	medkitTimer = CreateTimer(20.0, Timer_DeleteAllMedkits, _, TIMER_REPEAT | TIMER_FLAG_NO_MAPCHANGE);
+}
+
+public void Event_RoundEnd(Event event, const char[] name, bool dontBroadcast)
+{
+	medkitTimer = null;
+	delete medkitTimer;
+}
+
+public Action Timer_DeleteAllMedkits(Handle timer)
+{
+	float curFlow = map(L4D2_GetFurthestSurvivorFlow(), 0.0, L4D2Direct_GetMapMaxFlowDistance(), 0.0, 100.0);
+	if (curFlow >= 10.0) {  // Удаляем
+		char eName[64];
+		for (int i = 1; i <= GetEntityCount(); i++)
 		{
-			GetEntityClassname(i, eName, sizeof eName);
-			if (strcmp(eName, "weapon_first_aid_kit_spawn") == 0) {
-				if (mi < 4 && medkitsIndex[mi] == i) { mi++; } // В medkitsIndex записаны индексы медиков из saferoom'a. Если индекс совпадает, то оставляем ничего не делаем
-				else
-				{
-					med++;
-					if (!isFinalMap) {
-						if (med > 2) {
-							AcceptEntityInput(i, "Kill"); RemoveEdict(i);
-							//LogToFileEx(DropLP, "med: %i MEDKIT, ent: %i", med, i); // debug
-						}
-					}
-					else // Если последняя карта
-					{
-						if (med > 4) {
-							AcceptEntityInput(i, "Kill"); RemoveEdict(i);
-						}
-					}
+			if (IsValidEntity(i) && IsValidEdict(i))
+			{
+				GetEntityClassname(i, eName, sizeof(eName));
+				if (strcmp(eName, "weapon_first_aid_kit_spawn") == 0) {
+					AcceptEntityInput(i, "Kill"); RemoveEdict(i); // Удаляем все аптеки
 				}
 			}
+		}
+		medkitTimer = null;
+		return Plugin_Stop;
+	}
+	return Plugin_Continue;
+}
+
+
+public Action Event_RoundStart(Handle event, const char[] name, bool dontBroadcast)
+{
+	CreateTimer(1.0, Timer_ClearItems);
+	return Plugin_Continue;
+}
+
+public Action Timer_ClearItems(Handle timer)
+{
+	clearEvent();
+	return Plugin_Stop;
+}
+
+void clearEvent()
+{
+	if (!isVersus()) { return; }
+	char eName[64];
+	int pill, adr, pipe, molot, defib, vomit, ince, expl;
+	for (int i = 1; i <= GetEntityCount(); i++)
+	{
+		if (IsValidEntity(i) && IsValidEdict(i))
+		{
+			GetEntityClassname(i, eName, sizeof(eName));
 			if (strcmp(eName, "weapon_pain_pills_spawn") == 0) {
 				pill++;
-				if (pill > 4) {
+				if (pill > 2) {
 					AcceptEntityInput(i, "Kill"); RemoveEdict(i);
 				}
 			}
@@ -82,7 +116,6 @@ public void clearEvent(Event hEvent, const char[] sEvName, bool bDontBroadcast) 
 					AcceptEntityInput(i, "Kill"); RemoveEdict(i);
 				}
 			}
-			
 			if (strcmp(eName, "weapon_vomitjar_spawn") == 0) {
 				vomit++;
 				if (vomit > 2) {
@@ -138,88 +171,6 @@ stock bool IsValidClient(client)
 	return false;
 }
 
-void findSurvivorStart() // by Crimson_Fox
-{
-	char EdictClassName[128];
-	float Location[3];
-	//Search entities for either a locked saferoom door,
-	for (new i = 0; i <= GetEntityCount(); i++)
-	{
-		if (IsValidEntity(i) && IsValidEdict(i))
-		{
-			GetEdictClassname(i, EdictClassName, sizeof(EdictClassName));
-			if ((StrContains(EdictClassName, "prop_door_rotating_checkpoint", false) != -1) && (GetEntProp(i, Prop_Send, "m_bLocked") == 1))
-			{
-				GetEntPropVector(i, Prop_Send, "m_vecOrigin", Location);
-				SurvivorStart = Location;
-				return;
-			}
-		}
-	}
-	//or a survivor start point.
-	for (new i = 0; i <= GetEntityCount(); i++)
-	{
-		if (IsValidEntity(i) && IsValidEdict(i))
-		{
-			GetEdictClassname(i, EdictClassName, sizeof(EdictClassName));
-			if (StrContains(EdictClassName, "info_survivor_position", false) != -1)
-			{
-				GetEntPropVector(i, Prop_Send, "m_vecOrigin", Location);
-				SurvivorStart = Location;
-				return;
-			}
-		}
-	}
-}
-void getMedkitsIndexes() // by Crimson_Fox
-{
-	char EdictClassName[128];
-	float NearestMedkit[3];
-	float Location[3];
-	//Look for the nearest medkit from where the survivors start,
-	for (new i = 0; i <= GetEntityCount(); i++)
-	{
-		if (IsValidEntity(i) && IsValidEdict(i))
-		{
-			GetEdictClassname(i, EdictClassName, sizeof(EdictClassName));
-			if (StrContains(EdictClassName, "weapon_first_aid_kit", false) != -1)
-			{
-				GetEntPropVector(i, Prop_Send, "m_vecOrigin", Location);
-				//If NearestMedkit is zero, then this must be the first medkit we found.
-				if ((NearestMedkit[0] + NearestMedkit[1] + NearestMedkit[2]) == 0.0) {
-					NearestMedkit = Location;
-					continue;
-				}
-				//If this medkit is closer than the last medkit, record its location.
-				if (GetVectorDistance(SurvivorStart, Location, false) < GetVectorDistance(SurvivorStart, NearestMedkit, false)) {
-					NearestMedkit = Location;
-				}
-			}
-		}
-	}
-	//then replace the medkits near it with pain pills.
-	int ii = 0;
-	for (new i = 0; i <= GetEntityCount(); i++)
-	{
-		if (IsValidEntity(i) && IsValidEdict(i))
-		{
-			GetEdictClassname(i, EdictClassName, sizeof(EdictClassName));
-			if (StrContains(EdictClassName, "weapon_first_aid_kit", false) != -1)
-			{
-				GetEntPropVector(i, Prop_Send, "m_vecOrigin", Location);
-				if (GetVectorDistance(NearestMedkit, Location, false) < 400)
-				{
-					if (ii < 5)
-					{
-						medkitsIndex[ii] = i;
-						ii++;
-					}
-				}
-			}
-		}
-	}
-}
-
 stock Action printItemCount(int client, int args)
 {
 	char eName[64];
@@ -262,4 +213,4 @@ stock Action printItemCount(int client, int args)
 	}
 	PrintToChat(client, "Incendiary: %i", ince); PrintToChat(client, "Explosive: %i", expl); PrintToChat(client, "Pipe: %i", pipe); PrintToChat(client, "Molotov: %i", molot); PrintToChat(client, "Vomit: %i", vomit); PrintToChat(client, "Pills: %i", pill); PrintToChat(client, "Adrenaline: %i", adr); PrintToChat(client, "Medkit: %i", med); PrintToChat(client, "Defib: %i", defib);
 	return Plugin_Handled;
-}
+} 

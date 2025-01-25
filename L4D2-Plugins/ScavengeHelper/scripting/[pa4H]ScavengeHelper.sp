@@ -15,16 +15,16 @@ int canFill;
 
 public Plugin myinfo = 
 {
-	name = "Scavenge Chat Helper", 
+	name = "Scavenge Helper", 
 	author = "pa4H", 
 	description = "", 
-	version = "1.0", 
+	version = "2.0", 
 	url = "vk.com/pa4h1337"
 }
 
 public OnPluginStart()
 {
-	//RegConsoleCmd("sm_test", debb, "");
+	RegConsoleCmd("sm_test", debb, "");
 	RegConsoleCmd("sm_time", showTime, "");
 	
 	HookEvent("scavenge_round_halftime", RoundEnd, EventHookMode_PostNoCopy);
@@ -38,14 +38,16 @@ public OnPluginStart()
 
 stock Action debb(int client, int args) // DEBUG
 {
+	GetTimer(2); // Получаем время на таймере у противоположки (так как она в пред. раунде играла за людей)
+	CPrintToChat(client, "2: %t", "ShowTime", txtTime);
 	return Plugin_Handled;
 }
 
 public Action showTime(int client, int args) // Время прошлого раунда
-{	
+{
 	if (GameRules_GetProp("m_bInSecondHalfOfRound") == 1) // Если половинка раунда
 	{
-		GetTimer(2);
+		GetTimer(3); // Получаем время на таймере у противоположки (так как она в пред. раунде играла за людей)
 		CPrintToChat(client, "%t", "ShowTime", txtTime);
 	}
 	else // Если половинка раунда не прошла
@@ -96,7 +98,7 @@ void learnSlovoB()
 
 void GetTimer(int team) // На выходе переменная char txtTime
 {
-	float rSeconds = (90.0 - GameRules_GetRoundDuration(team)) + (canFill * 20);
+	float rSeconds = (90.0 - GameRules_GetRoundDuration(team)) + (float(canFill) * 20.0);
 	int min = RoundToFloor(rSeconds) / 60;
 	rSeconds -= 60 * min;
 	if (rSeconds < 10) {
@@ -107,42 +109,64 @@ void GetTimer(int team) // На выходе переменная char txtTime
 	}
 }
 
-float GameRules_GetRoundDuration(int team)
+stock float GameRules_GetRoundDuration(int team)
 {
 	float flRoundStartTime = GameRules_GetPropFloat("m_flRoundStartTime");
+	
 	if (team == 2 && flRoundStartTime != 0.0 && GameRules_GetPropFloat("m_flRoundEndTime") == 0.0)
 	{
 		return GetGameTime() - flRoundStartTime;
 	}
-	team = L4D2_clientTeamToTeamIndex(team);
-	if (team == -1) { return -1.0; }
+	
+	team = L4D2_TeamNumberToTeamIndex(team);
+	
+	if (team == -1)
+	{
+		return -1.0;
+	}
 	
 	return GameRules_GetPropFloat("m_flRoundDuration", team);
 }
 
-int GetScavengeTeamScore(int team, int round = -1)
+
+stock int GameRules_GetScavengeTeamScore(int team, int round = -1)
 {
-	team = L4D2_clientTeamToTeamIndex(team);
-	if (team == -1) { return -1; }
+	team = L4D2_TeamNumberToTeamIndex(team);
+	
+	if (team == -1)
+	{
+		return -1;
+	}
 	
 	if (round <= 0 || round > 5)
 	{
 		round = GameRules_GetProp("m_nRoundNumber");
 	}
+	
 	--round;
+	
 	return GameRules_GetProp("m_iScavengeTeamScore", _, (2 * round) + team);
 }
 
-int L4D2_clientTeamToTeamIndex(int team)
+stock int L4D2_TeamNumberToTeamIndex(int team)
 {
-	if (team != 2 && team != 3) { return -1; }
-	int flipped = GameRules_GetProp("m_bAreTeamsFlipped", 1);
-	if (flipped == 1) { ++team; }
+	if (team != 2 && team != 3)
+	{
+		return -1;
+	}
+	
+	bool flipped = view_as<bool>(GameRules_GetProp("m_bAreTeamsFlipped", 1));
+	
+	if (flipped)
+	{
+		++team;
+	}
+	
 	return team % 2;
 }
 public void Event_PourCompleted(Event event, const char[] name, bool dontBroadcast)
 {
-	canFill++;
+	if (GameRules_GetProp("m_bInSecondHalfOfRound") == 0) { canFill++; }
 }
 stock bool IsValidClient(client)
 {
