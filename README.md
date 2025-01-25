@@ -10,7 +10,7 @@
 * SourceMod v1.12 Compilator
 * [Left4DHooks Direct](https://forums.alliedmods.net/showthread.php?t=321696)
 * [100 Tickrate](https://github.com/accelerator74/Tickrate-Enabler)
-* [L4DToolz] (https://github.com/accelerator74/l4dtoolz?ysclid=m6cfjy68hx719060900)
+* [L4DToolz](https://github.com/accelerator74/l4dtoolz?ysclid=m6cfjy68hx719060900)
 * [Updated Colors.inc for plugins compilation](https://forums.alliedmods.net/showpost.php?p=2793368&postcount=417)
 * [My guide in Russian. How to make a server with 8+ slots](https://forum.myarena.ru/index.php?/topic/47821-statia-kak-sdelat-server-na-8-slotov/)
 
