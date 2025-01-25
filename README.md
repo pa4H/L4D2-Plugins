@@ -23,6 +23,7 @@
 # Server.exe
 
 <details><summary><b>sm plugins list</b></summary>
+
 ```ruby
 [SM] Listing 109 plugins:  
 001 "[L4D2]hunter_pounce_alignment_fix" (2.0) by Lux
@@ -138,6 +139,7 @@
 </details>
 
 <details><summary><b>meta list</b></summary>
+
 ```ruby
 Listing 10 plugins:
   [01] L4DToolZ (2.0.1) by Accelerator, Ivailosp
@@ -154,6 +156,7 @@ Listing 10 plugins:
 </details>
 
 <details><summary><b>sm exts list</b></summary>
+
 ```ruby
 [SM] Displaying 17 extensions:
 [01] Accelerator (2.5.0): SRCDS Crash Handler
@@ -174,14 +177,17 @@ Listing 10 plugins:
 [16] Regex (1.12.0.7176): Provides regex natives for plugins
 [17] MySQL-DBI (1.12.0.7176): MySQL driver implementation for DBI
 ```
+
 </details>
 
 <details><summary><b>plugin_print</b></summary>
+
 ```ruby
 Loaded plugins:  
 0:      "Metamod:Source 1.12.0-dev+1211"
 1:      "Tickrate_Enabler 1.5, ProdigySim"
 ```
+
 </details>
 
 <details><summary><b>My Server.cfg</b></summary>
