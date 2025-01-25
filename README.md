@@ -24,116 +24,116 @@
 
 <details><summary><b>sm plugins list</b></summary>
 
-  [SM] Listing 109 plugins:  
-  001 "[L4D2]hunter_pounce_alignment_fix" (2.0) by Lux
-  002 "[L4D1 & L4D2] Ignore Physics Damage" (1.0.0) by Mart
-  003 "[L4D2] Fix Jockey Hitbox" (2.1) by Forgetest
-  004 "Jockey Ride Team Switch Teleport Fix" (1.0) by HarryPotter
-  005 "L4D2 Pounce Protect" (1.1) by ProdigySim
-  006 "[L4D & L4D2] Reload Fix - Max Clip Size" (1.5) by SilverShot
-  007 "L4D(2) Tank Rock Lag Compensation" (1.14) by Luckylockm,HarryPotter,Silvers
-  008 "[L4D1/2]witch_prevent_target_loss" (1.1.1) by Lux
-  009 "[L4D2] Poof" (1.35) by blackalegator
-  010 "[L4D2] Spitter Projectile Creator" (1.2) by SilverShot
-  011 "Survivor Bot Takeover" (0.8) by Mikko Andersson (muukis)
-  012 "KickMenu" (1.0) by pa4H
-  013 "Whe" (1.0) by pa4H
-  014 "FunCmds" (1.0) by pa4H
-  015 "[pa4H]Help" (1.0) by pa4H
-  016 "!kill & !afk & !jointeam" (2.0) by pa4H
-  017 "MajorMenu" (1.0) by pa4H
-  018 "OverrideChat" (1.0) by pa4H
-  019 "Server cmds" (1.0) by pa4H
-  020 "TeamSwitcher" (3.0) by pa4H
-  021 "[L4D & L4D2] Tank Pass" (2.5) by Scratchy [Laika] & raziEiL [disawar1]
-  022 "Round Start Bot Stop" (1.8) by EHG
-  023 "Melee In The Saferoom" (3.1.0) by $atanic $pirit, N3wton
-  024 "Tank Damage Announce" (2.0) by Griffin, Blade, pa4H
-  025 "[L4D1 & L4D2] Tank Rock Ignition" (1.1.0) by Mart
-  026 "[L4D2] Unlock Finales" (1.0.3) by Mart
-  027 "Tank Attack Control" (1.0) by vintik, CanadaRox, Jacob, Visor, pa4H
-  028 "AntiMapFixes" (1.0) by pa4H
-  029 "BonusSystem" (2.5) by pa4H, vintik
-  030 "MapVoter" (2.1) by pa4H
-  031 "SetItemsCount" (3.0) by pa4H
-  032 "Tank&Witch on every map and !boss" (030824) by pa4H
-  033 "TankHP" (2.0) by pa4H
-  034 "VoteBoss" (1.0) by pa4H
-  035 "WhoBecomeTank" (1.0) by pa4H
-  036 "WitchDamageAnnounce" (2.0) by pa4H
-  037 "WitchSit" (1.0) by pa4H
-  038 "Connection Time Player" (1.0.0) by AlmazON
-  039 "AdminSeeAllChat" (1.0) by pa4H
-  040 "AntiBunny" (1.0) by pa4H
-  041 "ChatProcessor" (1.0) by pa4H
-  042 "MVP" (2.0) by pa4H
-  043 "SimpleAdv" (2.0) by pa4H, Tsunami
-  044 "Welcome Message" (2.0) by pa4H
-  045 "ABX" (1.2) by PCI Gaming Team
-  046 "[L4D2] Boomer Horde Control" (2.0) by Spoon, pa4H
-  047 "[L4D & L4D2] Common Limiter" (1.2) by SilverShot
-  048 "L4D2 weapon csgo reload" (2.3) by Harry Potter
-  049 "Dynamic Ghost Respawn Time" (1.0) by Xx_Faxe_xX
-  050 "[L4D & 2] Freely Round End" (1.0) by Forgetest
-  051 "[L4D & L4D2] Gear Transfer" (2.21) by SilverShot
-  052 "L4D Ghost Fly" (1.1.1) by Madcap
-  053 "[L4D2] Gift Rewards" (1.7) by SilverShot
-  054 "[L4D & L4D2] God Frames Patch" (1.7) by SilverShot
-  055 "L4D2 Hittable Control" (0.7) by Stabby, Visor, Sir, Derpduck, Forgetest
-  056 "Incap Punch Fix" (1) by CanadaRox
-  057 "L4D2 Melee Damage Fix&Control" (2.1) by Visor, Sir, A1m`
-  058 "L4D2 Bash Kills" (1.0) by Jahze
-  059 "No Spitter During Tank" (2.0) by Don, epilimic, Griffin
-  060 "[L4D & L4D2] Reverse Friendly-Fire" (2.8.2) by Mystic Spiral, pa4H
-  061 "[L4D2] Shove Direction Fix" by BHaType
-  062 "BiledTankDamage" (1.0) by pa4H
-  063 "Round All Talk" (1.1) by Mr. Zero
-  064 "[L4D & L4D2] First Map - Skip Intro Cutscenes" (1.11) by SilverShot
-  065 "DBLogger" (2.0) by pa4H
-  066 "FakeAdminPing" (1.0) by pa4H
-  067 "HighPingKicker" (1.0) by pa4H
-  068 "New Vote System" (170125) by pa4H
-  069 "PointInNick" (1.0) by pa4H
-  070 "ProStats" (4.0) by pa4H
-  071 "[L4D & L4D2] Dissolve Infected" (1.15) by SilverShot
-  072 "L4D2 Godframes Color (Default timings)" (0.1.2) by Tabun
-  073 "[L4D2]Survivor_Legs_Restore" (1.6.0) by Lux
-  074 "L4D2 Tank Hittable Glow" (2.5) by Harry Potter, Sir, A1m`, Derpduck
-  075 "Chotko_V_Jban" (2.0) by pa4H
-  076 "Kegly" (1.0) by pa4H
-  077 "ListSpeakers" (5.0) by pa4H, Aceleracion, Emilio3
-  078 "PissOnFace" (1.0) by pa4H
-  079 "UltraSound" (1.1) by pa4H
-  080 "l4d2_changelevel" (1.2.1) by Lux
-  081 "Skill Detection (skeets, crowns, levels)" (1.1.1) by Tabun
-  082 "[L4D & L4D2] Mission and Weapons - Info Editor" (1.25) by SilverShot
-  083 "[L4D & L4D2] Left 4 DHooks Direct" (1.155) by SilverShot
-  084 "[ANY] Restart Empty Server (or Map)" (2.6) by Alex Dragokas
-  085 "L4D 1/2 Remove Lobby Reservation" (2.0.8) by Downtown1, Anime4000, sorallll, HatsuneImagine
-  086 "[L4D2 & CS:GO & NMRiH] VScript File Replacer" (1.17) by SilverShot
-  087 "Server status" (1.0) by pa4H
-  088 "[L4D/2] Automated Demo Recording" (1.2) by shqke
-  089 "[L4D/2] Hide SourceTV Bot" (1.2) by shqke
-  090 "Manage HLTV Cameras" (1.6) by shqke
-  091 "[L4D/2] Unlink Camera Entities" (1.1) by shqke
-  092 "[Lilac] Little Anti-Cheat" (1.7.4) by J_Tanzanite
-  093 "Anti BunnyHop" (2.0) by CanadaRox, pa4H
-  094 "AntiPetuch" (1.0) by pa4H
-  095 "AFK Manager" (4.3.0) by Rothgar
-  096 "Spectator stays spectator" (1.0h-2024/2/19) by Die Teetasse, Harry
-  097 "l4d2 specating cheat" (2.8-2023/6/19) by Harry Potter
-  098 "SpecLister" (6.0) by pa4H
-  099 "SimpleInfectedSelect" (2.1) by pa4H, XBetaAlpha
-  100 "VIP-System" (1.0) by pa4H
-  101 "[L4D & L4D2] Flashlight Package" (2.34) by SilverShot
-  102 "[L4D & L4D2] Hats" (1.49) by SilverShot
-  103 "Survivor Bot Select" (1.0) by Merudo
-  104 "Admin File Reader" (1.12.0.7165) by AlliedModders LLC
-  105 "Admin Menu" (1.12.0.7165) by AlliedModders LLC
-  106 "Basic Comm Control" (1.12.0.7165) by AlliedModders LLC
-  107 "Basic Commands" (1.12.0.7176) by AlliedModders LLC
-  108 "Fun Commands" (1.12.0.7165) by AlliedModders LLC
-  109 "Player Commands" (1.12.0.7165) by AlliedModders LLC
+[SM] Listing 109 plugins:  
+001 "[L4D2]hunter_pounce_alignment_fix" (2.0) by Lux
+002 "[L4D1 & L4D2] Ignore Physics Damage" (1.0.0) by Mart
+003 "[L4D2] Fix Jockey Hitbox" (2.1) by Forgetest
+004 "Jockey Ride Team Switch Teleport Fix" (1.0) by HarryPotter
+005 "L4D2 Pounce Protect" (1.1) by ProdigySim
+006 "[L4D & L4D2] Reload Fix - Max Clip Size" (1.5) by SilverShot
+007 "L4D(2) Tank Rock Lag Compensation" (1.14) by Luckylockm,HarryPotter,Silvers
+008 "[L4D1/2]witch_prevent_target_loss" (1.1.1) by Lux
+009 "[L4D2] Poof" (1.35) by blackalegator
+010 "[L4D2] Spitter Projectile Creator" (1.2) by SilverShot
+011 "Survivor Bot Takeover" (0.8) by Mikko Andersson (muukis)
+012 "KickMenu" (1.0) by pa4H
+013 "Whe" (1.0) by pa4H
+014 "FunCmds" (1.0) by pa4H
+015 "[pa4H]Help" (1.0) by pa4H
+016 "!kill & !afk & !jointeam" (2.0) by pa4H
+017 "MajorMenu" (1.0) by pa4H
+018 "OverrideChat" (1.0) by pa4H
+019 "Server cmds" (1.0) by pa4H
+020 "TeamSwitcher" (3.0) by pa4H
+021 "[L4D & L4D2] Tank Pass" (2.5) by Scratchy [Laika] & raziEiL [disawar1]
+022 "Round Start Bot Stop" (1.8) by EHG
+023 "Melee In The Saferoom" (3.1.0) by $atanic $pirit, N3wton
+024 "Tank Damage Announce" (2.0) by Griffin, Blade, pa4H
+025 "[L4D1 & L4D2] Tank Rock Ignition" (1.1.0) by Mart
+026 "[L4D2] Unlock Finales" (1.0.3) by Mart
+027 "Tank Attack Control" (1.0) by vintik, CanadaRox, Jacob, Visor, pa4H
+028 "AntiMapFixes" (1.0) by pa4H
+029 "BonusSystem" (2.5) by pa4H, vintik
+030 "MapVoter" (2.1) by pa4H
+031 "SetItemsCount" (3.0) by pa4H
+032 "Tank&Witch on every map and !boss" (030824) by pa4H
+033 "TankHP" (2.0) by pa4H
+034 "VoteBoss" (1.0) by pa4H
+035 "WhoBecomeTank" (1.0) by pa4H
+036 "WitchDamageAnnounce" (2.0) by pa4H
+037 "WitchSit" (1.0) by pa4H
+038 "Connection Time Player" (1.0.0) by AlmazON
+039 "AdminSeeAllChat" (1.0) by pa4H
+040 "AntiBunny" (1.0) by pa4H
+041 "ChatProcessor" (1.0) by pa4H
+042 "MVP" (2.0) by pa4H
+043 "SimpleAdv" (2.0) by pa4H, Tsunami
+044 "Welcome Message" (2.0) by pa4H
+045 "ABX" (1.2) by PCI Gaming Team
+046 "[L4D2] Boomer Horde Control" (2.0) by Spoon, pa4H
+047 "[L4D & L4D2] Common Limiter" (1.2) by SilverShot
+048 "L4D2 weapon csgo reload" (2.3) by Harry Potter
+049 "Dynamic Ghost Respawn Time" (1.0) by Xx_Faxe_xX
+050 "[L4D & 2] Freely Round End" (1.0) by Forgetest
+051 "[L4D & L4D2] Gear Transfer" (2.21) by SilverShot
+052 "L4D Ghost Fly" (1.1.1) by Madcap
+053 "[L4D2] Gift Rewards" (1.7) by SilverShot
+054 "[L4D & L4D2] God Frames Patch" (1.7) by SilverShot
+055 "L4D2 Hittable Control" (0.7) by Stabby, Visor, Sir, Derpduck, Forgetest
+056 "Incap Punch Fix" (1) by CanadaRox
+057 "L4D2 Melee Damage Fix&Control" (2.1) by Visor, Sir, A1m`
+058 "L4D2 Bash Kills" (1.0) by Jahze
+059 "No Spitter During Tank" (2.0) by Don, epilimic, Griffin
+060 "[L4D & L4D2] Reverse Friendly-Fire" (2.8.2) by Mystic Spiral, pa4H
+061 "[L4D2] Shove Direction Fix" by BHaType
+062 "BiledTankDamage" (1.0) by pa4H
+063 "Round All Talk" (1.1) by Mr. Zero
+064 "[L4D & L4D2] First Map - Skip Intro Cutscenes" (1.11) by SilverShot
+065 "DBLogger" (2.0) by pa4H
+066 "FakeAdminPing" (1.0) by pa4H
+067 "HighPingKicker" (1.0) by pa4H
+068 "New Vote System" (170125) by pa4H
+069 "PointInNick" (1.0) by pa4H
+070 "ProStats" (4.0) by pa4H
+071 "[L4D & L4D2] Dissolve Infected" (1.15) by SilverShot
+072 "L4D2 Godframes Color (Default timings)" (0.1.2) by Tabun
+073 "[L4D2]Survivor_Legs_Restore" (1.6.0) by Lux
+074 "L4D2 Tank Hittable Glow" (2.5) by Harry Potter, Sir, A1m`, Derpduck
+075 "Chotko_V_Jban" (2.0) by pa4H
+076 "Kegly" (1.0) by pa4H
+077 "ListSpeakers" (5.0) by pa4H, Aceleracion, Emilio3
+078 "PissOnFace" (1.0) by pa4H
+079 "UltraSound" (1.1) by pa4H
+080 "l4d2_changelevel" (1.2.1) by Lux
+081 "Skill Detection (skeets, crowns, levels)" (1.1.1) by Tabun
+082 "[L4D & L4D2] Mission and Weapons - Info Editor" (1.25) by SilverShot
+083 "[L4D & L4D2] Left 4 DHooks Direct" (1.155) by SilverShot
+084 "[ANY] Restart Empty Server (or Map)" (2.6) by Alex Dragokas
+085 "L4D 1/2 Remove Lobby Reservation" (2.0.8) by Downtown1, Anime4000, sorallll, HatsuneImagine
+086 "[L4D2 & CS:GO & NMRiH] VScript File Replacer" (1.17) by SilverShot
+087 "Server status" (1.0) by pa4H
+088 "[L4D/2] Automated Demo Recording" (1.2) by shqke
+089 "[L4D/2] Hide SourceTV Bot" (1.2) by shqke
+090 "Manage HLTV Cameras" (1.6) by shqke
+091 "[L4D/2] Unlink Camera Entities" (1.1) by shqke
+092 "[Lilac] Little Anti-Cheat" (1.7.4) by J_Tanzanite
+093 "Anti BunnyHop" (2.0) by CanadaRox, pa4H
+094 "AntiPetuch" (1.0) by pa4H
+095 "AFK Manager" (4.3.0) by Rothgar
+096 "Spectator stays spectator" (1.0h-2024/2/19) by Die Teetasse, Harry
+097 "l4d2 specating cheat" (2.8-2023/6/19) by Harry Potter
+098 "SpecLister" (6.0) by pa4H
+099 "SimpleInfectedSelect" (2.1) by pa4H, XBetaAlpha
+100 "VIP-System" (1.0) by pa4H
+101 "[L4D & L4D2] Flashlight Package" (2.34) by SilverShot
+102 "[L4D & L4D2] Hats" (1.49) by SilverShot
+103 "Survivor Bot Select" (1.0) by Merudo
+104 "Admin File Reader" (1.12.0.7165) by AlliedModders LLC
+105 "Admin Menu" (1.12.0.7165) by AlliedModders LLC
+106 "Basic Comm Control" (1.12.0.7165) by AlliedModders LLC
+107 "Basic Commands" (1.12.0.7176) by AlliedModders LLC
+108 "Fun Commands" (1.12.0.7165) by AlliedModders LLC
+109 "Player Commands" (1.12.0.7165) by AlliedModders LLC
 	
 </details>
 
