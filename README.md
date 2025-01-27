@@ -241,8 +241,6 @@ mat_queue_mode 2
 z_resolve_zombie_collision_multiplier "0.05"
 
 // SourceTV
-tv_password 1337232228
-tv_relaypassword 1337232228
 sm_cvar sm_autorecord_minplayers 4
 sm_cvar sm_autorecord_roundsplit 0
 sm_cvar sm_autorecord_pathfmt "!Demos\%d.%m.%Y\%l-%d.%m.%Y-%H.%M"
@@ -473,6 +471,8 @@ sm_cvar z_charge_warmup "0.25"
 <details><summary><b>secure.cfg</b></summary>
 
 ```ruby
+tv_password "Hui tebe"
+tv_relaypassword "Hui tebe"
 rcon_password "Hui tebe"
 sm_cvar SteamAPI_Key "Hui tebe"
 sv_steamgroup "Hui tebe"
